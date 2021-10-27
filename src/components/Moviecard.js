@@ -10,7 +10,6 @@ class Moviecard extends React.Component{
        this.props.dispatch(removeFavourite(this.props.movie));
     }
     render(){
-        
         const {movie}=this.props;
         let isFav=this.props.isFav;
         return(

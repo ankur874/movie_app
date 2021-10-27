@@ -20,9 +20,10 @@ class App extends React.Component {
     this.props.store.dispatch(addMovies(data));
     console.log('mount');
   }
-  isFavourite=(movie)=>{
-     const {favourites}=this.props.store.getState();
-     const index=favourites.indexOf(movie);
+  isFavourite=(movieFromFunction)=>{
+    const {movie}=this.props.store.getState();
+     const {favourites}=movie;
+     const index=favourites.indexOf(movieFromFunction);
      if(index===-1){
        return false;
      }
@@ -30,40 +31,34 @@ class App extends React.Component {
        return true;
      }
   }
+  printMovies=(movies)=>{
+    movies.map((movie) => {
+      console.log('listssss');
+      return <Moviecard movie={movie} dispatch={this.props.store.dispatch} isFav={this.isFavourite(movie)}/>
+    }
+    );
+  }
 
-  // changeTab=(currentTab,showFav)=>{
-  //   if(currentTab==='movies'){
-  //     this.setState(()=>{
-  //       showFav=false;
-  //     });
-     
-  //   }
-  //   else{
-  //     this.setState(()=>{
-  //       showFav=true;
-  //     });
-  //   }
-  // }
   render() {
     console.log("render");
     console.log(this.props.store.getState());
-    const {list,favourites} = this.props.store.getState();
+    const {movie}=this.props.store.getState();
+    const {list,favourites} = movie;
     return (
       <div className="App">
         <Navbar />
         <div style={{ backgroundColor: 'white' }} className="main">
           <div className="">
             <button className="tab"  onClick={()=>{
-              console.log('movies button clicked',this.state.showFav)
-              this.setState(()=>{this.state.showFav=false});}}>Movies</button>
+              this.setState({showFav:false});}}>Movies</button>
             <button className="tab"onClick={()=>{  console.log('fav btn clicked',this.state.showFav);this.setState(()=>{
-              this.state.showFav=true;
+               this.setState({showFav:true});
             });}}>Favourites</button>
           </div>
           <div className='list'>
             {
               this.state.showFav?
-              favourites.map((movie) => {
+               favourites.map((movie) => {
                 return <Moviecard movie={movie} dispatch={this.props.store.dispatch} isFav={this.isFavourite(movie)}/>
               }
               )
@@ -72,6 +67,7 @@ class App extends React.Component {
                 return <Moviecard movie={movie} dispatch={this.props.store.dispatch} isFav={this.isFavourite(movie)}/>
               }
               )
+             
             }
           </div>
         </div>
