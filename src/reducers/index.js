@@ -42,7 +42,7 @@ const initialRootState={
     search:initialSearchState,
 }
 export function search(state=initialSearchState,action){
-    return state;git 
+    return state;
 }
 
 export const  rootReducer= combineReducers({

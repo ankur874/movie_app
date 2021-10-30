@@ -1,5 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { storeContext } from "..";
 class Navbar extends React.Component {
 
     render() {
@@ -40,4 +41,15 @@ const styles = {
     },
 };
 
+class NavbarWrapper extends React.Component{
+    render(){
+        return(
+          <storeContext.Consumer>
+              {
+                  (store)=><Navbar ></Navbar>
+              }
+          </storeContext.Consumer>
+        );
+    }
+}
 export default Navbar;

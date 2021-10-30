@@ -15,13 +15,13 @@ class Moviecard extends React.Component{
         return(
             <div style={styles.moieCard} className='movie-card'>
                <div style={styles.leftStyle} className='left'>
-                   <img style={styles.moviePoster} alt='Movie-poster' src={movie.posterUrl}/>
+                   <img style={styles.moviePoster} alt='Movie-poster' src={movie.poster_path}/>
                </div>
                <div style={styles.rightStyle} className='right'>
-                   <div style={styles.titleStyle} className='title'>{movie.title}</div>
-                   <div style={styles.plotStyle} className='plot'>{movie.plot}</div>
+                   <div style={styles.titleStyle} className='title'>{movie.original_title}</div>
+                   <div style={styles.plotStyle} className='plot'>{movie.overview}</div>
                    <div style={styles.footerStyle} className='footer'>
-                       <div style={styles.releaseYear} className='release-year'>Release year: {movie.year}</div>
+                       <div style={styles.releaseYear} className='release-year'>Release year: {movie.release_date}</div>
                        {
                            isFav?
                            <button style={styles.UnfavouriteBtn} onClick={this.removeFromFavourite} className='btn btn-danger favourite-btn'>UnFavourite</button>
